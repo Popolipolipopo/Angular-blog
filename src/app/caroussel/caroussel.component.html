@@ -1,4 +1,4 @@
-<mat-grid-list cols="3" rowHeight="4:8" gutterSize="16px">
+<mat-grid-list cols="3" rowHeight="3:4" gutterSize="16px">
   <mat-grid-tile
     *ngFor="let tile of tiles"
     [colspan]="tile.cols"
@@ -9,10 +9,12 @@
         <div mat-card-avatar class="example-header-image"></div>
         <mat-card-title>{{tile.text}}</mat-card-title>
       </mat-card-header>
-      <img mat-card-image src="{{tile.image}}">
+      <div style="height: 250px">
+        <img mat-card-image src="{{tile.image}}" style="height: 100%; width: 100%; object-fit: cover">
+      </div>
       <mat-card-content>
-        <p>
-          {{tile.content}}
+        <p style="text-align: justify">
+          Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat
         </p>
       </mat-card-content>
       <mat-card-actions>

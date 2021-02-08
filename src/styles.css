@@ -1,6 +1,13 @@
 /* You can add global styles to this file, and also import other style files */
 @import "~@angular/material/prebuilt-themes/indigo-pink.css";
 
+* {
+  font-family: Raleway, sans-serif !important;
+}
+
+h1, h2, h3, h4 {
+  margin: 0;
+}
 /* for sidenav to take a whole page */
 html, body {
   margin: 0;
@@ -32,5 +39,24 @@ li a:hover:not(.active) {
 }
 
 .active {
-  background-color: #4CAF50;
+  background-color: #c00d0d;
+}
+
+.center-div {
+  padding: 0 10%;
+}
+
+.ff-background {
+  height: 200px;
+  background-image: url("https://images.caradisiac.com/logos/2/9/7/8/262978/S0-la-saga-fast-furious-s-arretera-au-11e-episode-185968.jpg");
+  background-size: cover;
+  background-position: 50% 10%;
+}
+
+.space-div-5 {
+  margin-top: 5%;
+}
+
+.space-div-1 {
+  margin-top: 1%;
 }
