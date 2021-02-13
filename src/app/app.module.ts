@@ -13,6 +13,7 @@ import { BlogPageComponentComponent } from './blog-page-component/blog-page-comp
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './navigation/header/header.component';
@@ -37,6 +38,7 @@ const appRoutes: Routes = [
     HeaderComponent
   ],
   imports: [
+    FlexLayoutModule,
     MatTabsModule,
     MatCardModule,
     BrowserModule,

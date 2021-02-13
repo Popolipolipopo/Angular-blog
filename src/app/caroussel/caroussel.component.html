@@ -1,16 +1,11 @@
-<mat-grid-list cols="3" rowHeight="3:4" gutterSize="16px">
-  <mat-grid-tile
-    *ngFor="let tile of tiles"
-    [colspan]="1"
-    [rowspan]="1"
-    [style.background]="tile.color">
-    <mat-card class="example-card">
+<div fxLayout="row wrap" fxLayoutAlign="flex-start">
+  <ng-container *ngFor="let index of [0,1,2]">
+    <mat-card class="example-card" fxFlex="{{breakpoint}}" (window:resize)="onResize($event)" style="margin: 8px 8px">
       <mat-card-header>
-        <div mat-card-avatar class="example-header-image"></div>
-        <mat-card-title>{{tile.text}}</mat-card-title>
+        <mat-card-title style="font-size: 16px; padding-bottom: 10px">{{tile[index].text}}</mat-card-title>
       </mat-card-header>
-      <div style="height: 250px">
-        <img mat-card-image src="{{tile.image}}" style="height: 100%; width: 100%; object-fit: cover">
+      <div style="height: 250px; margin-left: 30px">
+        <img mat-card-image src="{{tile[index].image}}" style="height: 100%; width: 100%; object-fit: cover">
       </div>
       <mat-card-content>
         <p style="text-align: justify">
@@ -21,6 +16,6 @@
         <button mat-button>View more</button>
       </mat-card-actions>
     </mat-card>
-  </mat-grid-tile>
-</mat-grid-list>
+  </ng-container>
+</div>
 
