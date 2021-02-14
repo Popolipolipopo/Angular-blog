@@ -48,7 +48,7 @@ li a:hover:not(.active) {
 
 .ff-background {
   height: 200px;
-  background-image: url("https://images.caradisiac.com/logos/2/9/7/8/262978/S0-la-saga-fast-furious-s-arretera-au-11e-episode-185968.jpg");
+  background-image: url("src/assets/IMG_2377.JPG");
   background-size: cover;
   background-position: 50% 10%;
 }
