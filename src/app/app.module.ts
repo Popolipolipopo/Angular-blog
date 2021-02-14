@@ -20,9 +20,14 @@ import { HeaderComponent } from './navigation/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
 
+import { environment } from 'src/environments/environment';
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { AngularFireStorageModule } from '@angular/fire/storage';
+
 const appRoutes: Routes = [
   { path: 'home', component: LandingPageComponentComponent },
-  { path: 'blog', component: BlogPageComponentComponent },
+  { path: 'blogs', component: BlogPageComponentComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -49,9 +54,12 @@ const appRoutes: Routes = [
     MatToolbarModule,
     MatButtonModule,
     MatIconModule,
+    AngularFireModule.initializeApp(environment.firebaseConfig),
+    AngularFirestoreModule,
+    AngularFireStorageModule,
     RouterModule.forRoot(
       appRoutes,
-    )
+    ),
   ],
   providers: [],
   bootstrap: [AppComponent],
