@@ -19,7 +19,7 @@ export class CarousselComponent implements OnInit {
   breakpoint: string;
   items: Observable<any[]>;
   constructor(private store: AngularFirestore, private storage: AngularFireStorage) {
-    this.items = this.store.collection('test').valueChanges();
+    this.items = this.store.collection('blogs').valueChanges();
   }
   // tslint:disable-next-line:typedef
   ngOnInit() {
