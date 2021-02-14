@@ -16,7 +16,10 @@ export class BlogPageComponentComponent implements OnInit {
   blogsList: Array<object> = [];
   constructor(private store: AngularFirestore, private storage: AngularFireStorage) {
     this.item$ = this.store.collection('blogs').valueChanges();
-    this.store.collection('blogs').get().forEach((blogs) => {
+  }
+
+  async getFirebaseBlogs(store: AngularFirestore, storage: AngularFireStorage) {
+    await this.store.collection('blogs').get().forEach((blogs) => {
       blogs.docs.forEach((blog) => {
         this.blogsList.push({
           [blog.id]: {
