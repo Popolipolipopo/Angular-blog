@@ -31,6 +31,13 @@ export class AuthService {
     })
   }
 
+  CreatePost(title, content) {
+    this.afs.collection("blogs").add({
+      "title": title,
+      "content": content
+    });
+  }
+
   // Sign in with email/password
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)

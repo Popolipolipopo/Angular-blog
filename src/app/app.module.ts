@@ -26,6 +26,7 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { BlogManagementComponent } from './blog-management/blog-management.component';
+import {ReactiveFormsModule} from '@angular/forms';
 
 const appRoutes: Routes = [
   { path: 'home', component: LandingPageComponentComponent },
@@ -68,6 +69,7 @@ const appRoutes: Routes = [
     RouterModule.forRoot(
       appRoutes,
     ),
+    ReactiveFormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

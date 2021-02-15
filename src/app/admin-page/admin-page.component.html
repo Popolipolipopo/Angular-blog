@@ -1,1 +1,21 @@
-<h1>Admin page</h1>
+<div class="displayTable">
+  <div class="displayTableCell">
+
+    <div class="authBlock">
+      <h3>Create a post</h3>
+      <div class="formGroup">
+        <input type="text" class="formControl" placeholder="Title" #title required>
+      </div>
+
+      <div class="formGroup">
+        <input type="text" class="formControl" placeholder="Content" #content required>
+      </div>
+
+      <!-- Calling SignIn Api from AuthService -->
+      <div class="formGroup">
+        <input type="button" class="btn btnPrimary" value="Submit" (click)="authService.CreatePost(title.value, content.value)">
+      </div>
+    </div>
+
+  </div>
+</div>
