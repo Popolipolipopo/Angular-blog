@@ -10,7 +10,7 @@ import { Router } from "@angular/router";
 
 export class AuthService {
   userData: any; // Save logged in user data
-
+  isLogged = false;
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
@@ -35,8 +35,9 @@ export class AuthService {
   SignIn(email, password) {
     return this.afAuth.signInWithEmailAndPassword(email, password)
       .then((result) => {
+        this.isLogged = true;
         this.ngZone.run(() => {
-          this.router.navigate(['blog-management']);
+          this.router.navigate(['admin']);
         });
         this.SetUserData(result.user);
       }).catch((error) => {
@@ -59,6 +60,7 @@ export class AuthService {
   }
 */
 
+/*
   // Auth logic to run auth providers
   AuthLogin(provider) {
     return this.afAuth.signInWithPopup(provider)
@@ -71,6 +73,7 @@ export class AuthService {
         window.alert(error)
       })
   }
+*/
 
   /* Setting up user data when sign in with username/password,
   sign up with username/password and sign in with social auth
@@ -98,11 +101,12 @@ export class AuthService {
   }
 
 
-  // Returns true when user is looged in and email is verified
+// Returns true when user is looged in and email is verified
   get isLoggedIn(): boolean {
     const user = JSON.parse(localStorage.getItem('user'));
-    return (user !== null && user.emailVerified !== false) ? true : false;
+    return (user !== null || this.isLogged === true);
   }
+
 
 
 }
