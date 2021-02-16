@@ -11,9 +11,14 @@
         <input type="text" class="formControl" placeholder="Content" #content required>
       </div>
 
+      <div class="formGroup">
+        <img [src]="url" height="200"> <br/>
+        <input type='file' (change)="onSelectFile($event)">
+      </div>
+
       <!-- Calling SignIn Api from AuthService -->
       <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Submit" (click)="authService.CreatePost(title.value, content.value)">
+        <input type="button" class="btn btnPrimary" value="Submit" (click)="authService.CreatePost(title.value, content.value, url)">
       </div>
     </div>
 

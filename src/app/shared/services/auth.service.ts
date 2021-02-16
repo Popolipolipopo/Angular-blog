@@ -3,6 +3,7 @@ import { User } from "../services/user";
 import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import {AngularFireStorage} from '@angular/fire/storage';
 
 @Injectable({
   providedIn: 'root'
@@ -14,6 +15,7 @@ export class AuthService {
   constructor(
     public afs: AngularFirestore,   // Inject Firestore service
     public afAuth: AngularFireAuth, // Inject Firebase auth service
+    public afSt: AngularFireStorage,
     public router: Router,
     public ngZone: NgZone // NgZone service to remove outside scope warning
   ) {
@@ -31,11 +33,28 @@ export class AuthService {
     })
   }
 
-  CreatePost(title, content) {
-    this.afs.collection("blogs").add({
+  Makeid(length) {
+    let result:string = '';
+    let characters:string = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+    let charactersLength:number = characters.length;
+    for ( let i:number = 0; i < length; i++ ) {
+      result += characters.charAt(Math.floor(Math.random() * charactersLength));
+    }
+    return result;
+  }
+
+
+  CreatePost(title, content, image_url) {
+    let id:string = this.Makeid(20);
+    this.UploadImage(image_url, id);
+    this.afs.collection("blogs").doc(id).set({
       "title": title,
       "content": content
     });
+  }
+
+  UploadImage(url, id) {
+    this.afSt.ref("blogs/" + id).putString(url, "data_url");
   }
 
   // Sign in with email/password
