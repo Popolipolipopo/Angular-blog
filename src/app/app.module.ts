@@ -10,7 +10,6 @@ import { CarousselComponent } from './caroussel/caroussel.component';
 import { LandingPageComponentComponent } from './landing-page-component/landing-page-component.component';
 import { BlogPageComponentComponent } from './blog-page-component/blog-page-component.component';
 import { PageNotFoundComponent } from './page-not-found/page-not-found.component';
-import { NavbarComponent } from './navbar/navbar.component';
 import { CommonModule } from '@angular/common';
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -25,14 +24,13 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import { BlogManagementComponent } from './blog-management/blog-management.component';
 import {ReactiveFormsModule} from '@angular/forms';
+
 
 const appRoutes: Routes = [
   { path: 'home', component: LandingPageComponentComponent },
   { path: 'blogs', component: BlogPageComponentComponent },
   { path: 'sign-in', component: SignInComponent },
-  { path: 'blog-management', component: BlogManagementComponent },
   { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
@@ -45,11 +43,9 @@ const appRoutes: Routes = [
     LandingPageComponentComponent,
     BlogPageComponentComponent,
     PageNotFoundComponent,
-    NavbarComponent,
     HeaderComponent,
     AdminPageComponent,
     SignInComponent,
-    BlogManagementComponent
   ],
   imports: [
     FlexLayoutModule,

@@ -24,3 +24,32 @@
 
   </div>
 </div>
+<div fxLayout="row wrap" fxLayoutAlign="flex-start">
+  <ng-container *ngFor="let item of items | async">
+    <mat-card class="example-card" fxFlex="{{breakpoint}}" (window:resize)="onResize($event)" style="margin: 8px 8px">
+      <mat-card-header>
+        <mat-card-title style="font-size: 16px; padding-bottom: 10px">{{item.title}}</mat-card-title>
+      </mat-card-header>
+      <div style="height: 250px; margin-left: 30px">
+        <img mat-card-image src="https://firebasestorage.googleapis.com/v0/b/angularblog-e02d1.appspot.com/o/blogs%2F{{item.image_name}}?alt=media" style="height: 100%; width: 100%; object-fit: cover">
+      </div>
+      <mat-card-content>
+        <p style="text-align: justify">
+          {{item.content}}
+        </p>
+      </mat-card-content>
+      <mat-card-actions>
+        <button mat-button>View more</button>
+      </mat-card-actions>
+      <section>
+        <div class="actions-row">
+          <button mat-raised-button>Modify</button>
+          <button mat-raised-button color="primary" (click)="deleteBlog(item.image_name)">Delete</button>
+<!--
+          <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
+-->
+        </div>
+      </section>
+    </mat-card>
+  </ng-container>
+</div>

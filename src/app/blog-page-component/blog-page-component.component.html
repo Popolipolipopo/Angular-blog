@@ -1,5 +1,5 @@
 <div fxLayout="row wrap" fxLayoutAlign="flex-start">
-  <ng-container *ngFor="let item of item$ | async">
+  <ng-container *ngFor="let item of items | async">
     <mat-card class="example-card" fxFlex="{{breakpoint}}" (window:resize)="onResize($event)" style="margin: 8px 8px">
       <mat-card-header>
         <mat-card-title style="font-size: 16px; padding-bottom: 10px">{{item.title}}</mat-card-title>

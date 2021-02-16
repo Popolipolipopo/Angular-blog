@@ -12,10 +12,10 @@ import { Observable } from 'rxjs';
 export class BlogPageComponentComponent implements OnInit {
 
   breakpoint: string;
-  item$: Observable<any[]>;
+  items: Observable<any[]>;
   blogsList: Array<object> = [];
   constructor(private store: AngularFirestore, private storage: AngularFireStorage) {
-    this.item$ = this.store.collection('blogs').valueChanges();
+    this.items = this.store.collection('blogs').valueChanges();
   }
 
   async getFirebaseBlogs(store: AngularFirestore, storage: AngularFireStorage) {

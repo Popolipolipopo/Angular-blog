@@ -49,7 +49,8 @@ export class AuthService {
     this.UploadImage(image_url, id);
     this.afs.collection("blogs").doc(id).set({
       "title": title,
-      "content": content
+      "content": content,
+      "image_name": id
     });
   }
 
