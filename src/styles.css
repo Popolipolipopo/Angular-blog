@@ -53,6 +53,10 @@ li a:hover:not(.active) {
   background-position: 50% 10%;
 }
 
+.ff-background h1, .ff-background h2 {
+  color: white;
+}
+
 .space-div-5 {
   margin-top: 5%;
 }
