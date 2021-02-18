@@ -1,13 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, Input, OnInit, Output} from '@angular/core';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
 import {Observable} from 'rxjs';
-
-export interface Tile {
-  text: string;
-  image: string;
-  content: string;
-}
 
 @Component({
   selector: 'app-caroussel',
@@ -15,6 +9,7 @@ export interface Tile {
   styleUrls: ['./caroussel.component.css']
 })
 export class CarousselComponent implements OnInit {
+  @Input() limit: number;
 
   breakpoint: string;
   items: Observable<any[]>;

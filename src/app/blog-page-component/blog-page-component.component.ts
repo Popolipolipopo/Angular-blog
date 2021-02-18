@@ -18,20 +18,6 @@ export class BlogPageComponentComponent implements OnInit {
     this.items = this.store.collection('blogs').valueChanges();
   }
 
-  async getFirebaseBlogs(store: AngularFirestore, storage: AngularFireStorage) {
-    await this.store.collection('blogs').get().forEach((blogs) => {
-      blogs.docs.forEach((blog) => {
-        this.blogsList.push({
-          [blog.id]: {
-            title: blog.data()["title"],
-            content: blog.data()["content"],
-          }
-        });
-        console.log(blog.id)
-      });
-    });
-  }
-
   // tslint:disable-next-line:typedef
   ngOnInit() {
     this.breakpoint = (window.innerWidth <= 880) ? '0 1 calc(100% - 16px)' : '0 1 calc(33% - 16px)';
