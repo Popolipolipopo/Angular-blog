@@ -3,6 +3,11 @@ import { AngularFirestore } from '@angular/fire/firestore';
 import { AngularFireStorage } from '@angular/fire/storage';
 import { Observable } from 'rxjs';
 
+interface Categories {
+  value: string;
+  viewValue: string;
+}
+
 @Component({
   selector: 'app-blog-page-component',
   templateUrl: './blog-page-component.component.html',
@@ -13,7 +18,13 @@ export class BlogPageComponentComponent implements OnInit {
 
   breakpoint: string;
   items: Observable<any[]>;
-  blogsList: Array<object> = [];
+  selectedValue = '';
+  categories: Categories[] = [
+    {value: '', viewValue: 'None'},
+    {value: 'person', viewValue: 'Peoples'},
+    {value: 'car', viewValue: 'Cars'}
+  ];
+
   constructor(private store: AngularFirestore, private storage: AngularFireStorage) {
     this.items = this.store.collection('blogs').valueChanges();
   }

@@ -1,1 +1,11 @@
-<app-caroussel></app-caroussel>
+<form>
+  <h4>Add a filter</h4>
+  <mat-form-field appearance="fill">
+    <select matNativeControl [(ngModel)]="selectedValue" name="category">
+      <option *ngFor="let category of categories" [value]="category.value">
+        {{category.viewValue}}
+      </option>
+    </select>
+  </mat-form-field>
+</form>
+<app-caroussel filter="{{selectedValue}}"></app-caroussel>

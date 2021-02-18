@@ -4,7 +4,7 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatCardModule } from '@angular/material/card';
 import { MatGridListModule } from '@angular/material/grid-list';
 import { RouterModule, Routes } from '@angular/router';
-import { AuthGuard } from "./shared/guard/auth.guard";
+import { AuthGuard } from './shared/guard/auth.guard';
 import { AppComponent } from './app.component';
 import { CarousselComponent } from './caroussel/caroussel.component';
 import { LandingPageComponentComponent } from './landing-page-component/landing-page-component.component';
@@ -17,7 +17,7 @@ import { MatToolbarModule } from '@angular/material/toolbar';
 import { HeaderComponent } from './navigation/header/header.component';
 import { MatIconModule } from '@angular/material/icon';
 import { MatButtonModule } from '@angular/material/button';
-import { AuthService } from "./shared/services/auth.service";
+import { AuthService } from './shared/services/auth.service';
 import { environment } from 'src/environments/environment';
 import { AngularFireModule } from '@angular/fire';
 import { AngularFirestoreModule } from '@angular/fire/firestore';
@@ -25,6 +25,9 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
 import { FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {MatFormFieldModule} from '@angular/material/form-field';
+import {MatSelectModule} from '@angular/material/select';
+import {MatInputModule} from '@angular/material/input';
 
 
 const appRoutes: Routes = [
@@ -67,6 +70,9 @@ const appRoutes: Routes = [
     ),
     ReactiveFormsModule,
     FormsModule,
+    MatFormFieldModule,
+    MatSelectModule,
+    MatInputModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

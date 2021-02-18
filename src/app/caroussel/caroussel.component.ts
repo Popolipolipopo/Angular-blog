@@ -10,6 +10,7 @@ import {Observable} from 'rxjs';
 })
 export class CarousselComponent implements OnInit {
   @Input() limit: number;
+  @Input() filter: string;
 
   breakpoint: string;
   items: Observable<any[]>;
