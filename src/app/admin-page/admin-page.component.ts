@@ -67,4 +67,14 @@ export class AdminPageComponent implements OnInit {
     }
   }
 
+  cancelModifying() {
+    this.isModifying = false;
+    this.pageTitle = "Create a post";
+    this.currentPostTitle = "";
+    this.currentPostContent = "";
+    this.currentPostId = "";
+    this.oldPostUrl = "";
+    this.newPostUrl = "";
+  }
+
 }
