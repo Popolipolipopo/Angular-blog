@@ -1,4 +1,6 @@
-<form>
+<h1>All blogs</h1>
+<div class="">
+  <div class="space-div-1"></div>
   <h4>Add a filter</h4>
   <mat-form-field appearance="fill">
     <select matNativeControl [(ngModel)]="selectedValue" name="category">
@@ -7,5 +9,5 @@
       </option>
     </select>
   </mat-form-field>
-</form>
+</div>
 <app-caroussel filter="{{selectedValue}}"></app-caroussel>
