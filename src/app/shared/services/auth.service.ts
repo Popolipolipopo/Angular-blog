@@ -54,8 +54,27 @@ export class AuthService {
     });
   }
 
+  ModifyPost(title, content, new_image_url, old_image_url, id) {
+    console.log(old_image_url);
+    console.log(!old_image_url);
+    if (!old_image_url) {
+      this.UploadImage(new_image_url, id);
+    }
+    this.afs.collection("blogs").doc(id).set({
+      "title": title,
+      "content": content,
+      "image_name": id
+    });
+    location.reload();
+  }
+
+
   UploadImage(url, id) {
     this.afSt.ref("blogs/" + id).putString(url, "data_url");
+  }
+
+  DeleteImage(id) {
+    this.afSt.ref("blogs/" + id).delete();
   }
 
   // Sign in with email/password

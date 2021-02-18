@@ -10,10 +10,18 @@ import {AngularFireStorage} from '@angular/fire/storage';
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
-  url: string;
+  pageTitle:string = "";
+  newPostUrl: string;
+  oldPostUrl: string;
   breakpoint: string;
   items: Observable<any[]>;
+  isModifying:boolean = false;
+  currentPostTitle:string = "";
+  currentPostContent:string = "";
+  currentPostId:string = "";
+
   constructor( public authService: AuthService, private store: AngularFirestore, private storage: AngularFireStorage) {
+    this.pageTitle = "Create a post";
   }
 
   ngOnInit(): void {
@@ -30,7 +38,8 @@ export class AdminPageComponent implements OnInit {
       var reader = new FileReader();
       reader.readAsDataURL(event.target.files[0]);
       reader.onload = (event) => {
-        this.url = event.target.result.toString();
+        this.newPostUrl = event.target.result.toString();
+        this.oldPostUrl = "";
       }
     }
   }
@@ -38,6 +47,24 @@ export class AdminPageComponent implements OnInit {
   deleteBlog(id) {
     this.store.collection("blogs").doc(id).delete();
     this.storage.ref("blogs/" + id).delete();
+  }
+
+  toggleModifying(title, content, image_id) {
+    this.isModifying = true;
+    this.pageTitle = "Modify a post";
+    this.currentPostTitle = title;
+    this.currentPostContent = content;
+    this.currentPostId = image_id;
+    this.oldPostUrl = "https://firebasestorage.googleapis.com/v0/b/angularblog-e02d1.appspot.com/o/blogs%2F" + this.currentPostId + "?alt=media";
+    this.newPostUrl = "";
+  }
+
+  submitForm() {
+    if (this.isModifying) {
+      this.authService.ModifyPost(this.currentPostTitle, this.currentPostContent, this.newPostUrl, this.oldPostUrl, this.currentPostId);
+    } else {
+      this.authService.CreatePost(this.currentPostTitle, this.currentPostContent, this.newPostUrl);
+    }
   }
 
 }

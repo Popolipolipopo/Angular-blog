@@ -24,7 +24,7 @@ import { AngularFirestoreModule } from '@angular/fire/firestore';
 import { AngularFireStorageModule } from '@angular/fire/storage';
 import { AdminPageComponent } from './admin-page/admin-page.component';
 import { SignInComponent } from './sign-in/sign-in.component';
-import {ReactiveFormsModule} from '@angular/forms';
+import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 
 
 const appRoutes: Routes = [
@@ -66,6 +66,7 @@ const appRoutes: Routes = [
       appRoutes,
     ),
     ReactiveFormsModule,
+    FormsModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
