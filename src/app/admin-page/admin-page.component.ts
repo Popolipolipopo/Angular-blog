@@ -19,6 +19,7 @@ export class AdminPageComponent implements OnInit {
   currentPostTitle:string = "";
   currentPostContent:string = "";
   currentPostId:string = "";
+  currentPostCategory:string = "";
 
   constructor( public authService: AuthService, private store: AngularFirestore, private storage: AngularFireStorage) {
     this.pageTitle = "Create a post";
@@ -49,7 +50,7 @@ export class AdminPageComponent implements OnInit {
     this.storage.ref("blogs/" + id).delete();
   }
 
-  toggleModifying(title, content, image_id) {
+  toggleModifying(title, content, image_id, category) {
     this.isModifying = true;
     this.pageTitle = "Modify a post";
     this.currentPostTitle = title;
@@ -57,13 +58,14 @@ export class AdminPageComponent implements OnInit {
     this.currentPostId = image_id;
     this.oldPostUrl = "https://firebasestorage.googleapis.com/v0/b/angularblog-e02d1.appspot.com/o/blogs%2F" + this.currentPostId + "?alt=media";
     this.newPostUrl = "";
+    this.currentPostCategory = category;
   }
 
   submitForm() {
     if (this.isModifying) {
-      this.authService.ModifyPost(this.currentPostTitle, this.currentPostContent, this.newPostUrl, this.oldPostUrl, this.currentPostId);
+      this.authService.ModifyPost(this.currentPostTitle, this.currentPostContent, this.newPostUrl, this.oldPostUrl, this.currentPostId, this.currentPostCategory);
     } else {
-      this.authService.CreatePost(this.currentPostTitle, this.currentPostContent, this.newPostUrl);
+      this.authService.CreatePost(this.currentPostTitle, this.currentPostContent, this.newPostUrl, this.currentPostCategory);
     }
   }
 
@@ -75,6 +77,7 @@ export class AdminPageComponent implements OnInit {
     this.currentPostId = "";
     this.oldPostUrl = "";
     this.newPostUrl = "";
+    this.currentPostCategory = "";
   }
 
 }

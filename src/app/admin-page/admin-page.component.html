@@ -12,6 +12,10 @@
       </div>
 
       <div class="formGroup">
+        <input type="text" class="formControl" placeholder="Category" [(ngModel)]="currentPostCategory" required>
+      </div>
+
+      <div class="formGroup">
         <img [src]=oldPostUrl height="200"> <br/>
         <img [src]=newPostUrl height="200"> <br/>
         <input type='file' (change)="onSelectFile($event)">
@@ -46,7 +50,7 @@
       </mat-card-actions>
       <section>
         <div class="actions-row">
-          <button mat-raised-button (click)="toggleModifying(item.title, item.content, item.image_name)">Modify</button>
+          <button mat-raised-button (click)="toggleModifying(item.title, item.content, item.image_name, item.categories)">Modify</button>
           <button mat-raised-button color="primary" (click)="deleteBlog(item.image_name)">Delete</button>
 <!--
           <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>

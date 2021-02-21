@@ -44,28 +44,29 @@ export class AuthService {
   }
 
 
-  CreatePost(title, content, image_url) {
+  CreatePost(title, content, image_url, category) {
     let id:string = this.Makeid(20);
     this.UploadImage(image_url, id);
     this.afs.collection("blogs").doc(id).set({
       "title": title,
       "content": content,
-      "image_name": id
+      "image_name": id,
+      "categories": category
     });
   }
 
-  ModifyPost(title, content, new_image_url, old_image_url, id) {
-    console.log(old_image_url);
-    console.log(!old_image_url);
+  ModifyPost(title, content, new_image_url, old_image_url, id, category) {
     if (!old_image_url) {
       this.UploadImage(new_image_url, id);
     }
     this.afs.collection("blogs").doc(id).set({
       "title": title,
       "content": content,
-      "image_name": id
+      "image_name": id,
+      "categories": category
+    }).then(() => {
+      location.reload();
     });
-    location.reload();
   }
 
 
