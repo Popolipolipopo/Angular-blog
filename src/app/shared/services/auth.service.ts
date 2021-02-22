@@ -4,6 +4,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import { AngularFirestore, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Router } from "@angular/router";
 import {AngularFireStorage} from '@angular/fire/storage';
+import {MatSnackBar} from '@angular/material/snack-bar';
 
 @Injectable({
   providedIn: 'root'
@@ -17,7 +18,8 @@ export class AuthService {
     public afAuth: AngularFireAuth, // Inject Firebase auth service
     public afSt: AngularFireStorage,
     public router: Router,
-    public ngZone: NgZone // NgZone service to remove outside scope warning
+    public ngZone: NgZone,
+    private _snackBar: MatSnackBar,// NgZone service to remove outside scope warning
   ) {
     /* Saving user data in localstorage when
     logged in and setting up null when logged out */
@@ -52,6 +54,8 @@ export class AuthService {
       "content": content,
       "image_name": id,
       "categories": category
+    }).then(() => {
+      this.openSnackBar("Post successfully created", "OK");
     });
   }
 
@@ -66,6 +70,7 @@ export class AuthService {
       "categories": category
     }).then(() => {
       location.reload();
+      this.openSnackBar("Post successfully modified", "OK");
     });
   }
 
@@ -85,11 +90,18 @@ export class AuthService {
         this.isLogged = true;
         this.ngZone.run(() => {
           this.router.navigate(['admin']);
+          this.openSnackBar("User successfully logged in", "OK");
         });
         this.SetUserData(result.user);
       }).catch((error) => {
-        window.alert(error.message)
+        this.openSnackBar("Email and/or password incorrect", "OK");
       })
+  }
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      duration: 2000,
+    });
   }
 
 /*
