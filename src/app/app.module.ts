@@ -38,6 +38,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 const appRoutes: Routes = [
   { path: 'home', component: LandingPageComponentComponent },
   { path: 'blogs', component: BlogPageComponentComponent },
+  { path: 'blog', component: SingleBlogPageComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
