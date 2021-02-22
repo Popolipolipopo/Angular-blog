@@ -2,17 +2,50 @@
   <div class="displayTableCell">
 
     <div class="authBlock">
-      <h3>{{pageTitle}}</h3>
+      <mat-button-toggle-group value="{{toggleValue}}">
+        <mat-button-toggle [disabled]="isModifying" value="Create">
+          <span>Create</span>
+        </mat-button-toggle>
+        <mat-button-toggle [disabled]="!isModifying" value="Modify">
+          <span>Modify</span>
+        </mat-button-toggle>
+      </mat-button-toggle-group>
       <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Title" [(ngModel)]="currentPostTitle" required>
+        <mat-form-field class="example-form-field">
+          <mat-label>Title</mat-label>
+          <input matInput type="text" [(ngModel)]="currentPostTitle">
+          <button mat-button *ngIf="currentPostTitle" matSuffix mat-icon-button aria-label="Clear" (click)="currentPostTitle=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
       </div>
 
       <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Content" [(ngModel)]="currentPostContent" required>
+        <mat-form-field class="example-form-field">
+          <mat-label>Content</mat-label>
+          <input matInput type="text" [(ngModel)]="currentPostContent">
+          <button mat-button *ngIf="currentPostContent" matSuffix mat-icon-button aria-label="Clear" (click)="currentPostContent=''">
+            <mat-icon>close</mat-icon>
+          </button>
+        </mat-form-field>
       </div>
 
       <div class="formGroup">
-        <input type="text" class="formControl" placeholder="Category" [(ngModel)]="currentPostCategory" required>
+        <mat-form-field class="example-full-width">
+          <mat-label>Category</mat-label>
+          <input type="text"
+                 placeholder="Category"
+                 aria-label="Category"
+                 matInput
+                 [formControl]="myControl"
+                 [matAutocomplete]="auto"
+                 [(ngModel)]="currentPostCategory">
+          <mat-autocomplete #auto="matAutocomplete">
+            <mat-option *ngFor="let option of filteredOptions | async" [value]="option">
+              {{option}}
+            </mat-option>
+          </mat-autocomplete>
+        </mat-form-field>
       </div>
 
       <div class="formGroup">
@@ -20,13 +53,9 @@
         <img [src]=newPostUrl height="200"> <br/>
         <input type='file' (change)="onSelectFile($event)">
       </div>
-
-      <!-- Calling SignIn Api from AuthService -->
       <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Submit" (click)="submitForm()">
-      </div>
-      <div class="formGroup">
-        <input type="button" class="btn btnPrimary" value="Cancel" (click)="cancelModifying()">
+        <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
+        <button mat-raised-button (click)="cancelModifying()">Submit</button>
       </div>
     </div>
   </div>
@@ -52,9 +81,6 @@
         <div class="actions-row">
           <button mat-raised-button (click)="toggleModifying(item.title, item.content, item.image_name, item.categories)">Modify</button>
           <button mat-raised-button color="primary" (click)="deleteBlog(item.image_name)">Delete</button>
-<!--
-          <a mat-raised-button href="https://www.google.com/" target="_blank">Link</a>
--->
         </div>
       </section>
     </mat-card>

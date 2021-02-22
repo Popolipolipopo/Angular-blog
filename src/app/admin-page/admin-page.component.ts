@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import {ChangeDetectorRef, Component, OnInit} from '@angular/core';
 import {AuthService} from '../shared/services/auth.service';
 import {Observable} from 'rxjs';
 import {AngularFirestore} from '@angular/fire/firestore';
 import {AngularFireStorage} from '@angular/fire/storage';
+import {FormControl} from '@angular/forms';
+import {map, startWith} from 'rxjs/operators';
 
 @Component({
   selector: 'app-admin-page',
@@ -10,7 +12,6 @@ import {AngularFireStorage} from '@angular/fire/storage';
   styleUrls: ['./admin-page.component.css']
 })
 export class AdminPageComponent implements OnInit {
-  pageTitle:string = "";
   newPostUrl: string;
   oldPostUrl: string;
   breakpoint: string;
@@ -20,13 +21,43 @@ export class AdminPageComponent implements OnInit {
   currentPostContent:string = "";
   currentPostId:string = "";
   currentPostCategory:string = "";
+  myControl = new FormControl();
+  toggleValue:string = "Create";
+  filteredOptions: Observable<string[]>;
+  categories: string[] = [];
 
-  constructor( public authService: AuthService, private store: AngularFirestore, private storage: AngularFireStorage) {
-    this.pageTitle = "Create a post";
+  constructor( public authService: AuthService, private store: AngularFirestore, private storage: AngularFireStorage, private ref:ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
     this.items = this.store.collection('blogs').valueChanges();
+    this.store.firestore.collection("blogs").get().then((querySnapshot) => {
+      querySnapshot.forEach((doc) => {
+        if (!this.categoryExists(doc.data()["categories"])) {
+          this.categories.push(doc.data()["categories"]);
+        }
+      });
+    });
+    this.filteredOptions = this.myControl.valueChanges
+      .pipe(
+        startWith(''),
+        map(value => this._filter(value))
+      );
+    this.ref.detectChanges();
+  }
+
+  categoryExists(category) {
+    for (let i = 0; i < this.categories.length; i++) {
+      if (this.categories[i].toLowerCase() == category.toLowerCase())
+        return true;
+    }
+    return false;
+  }
+
+  private _filter(value: string): string[] {
+    const filterValue = value.toLowerCase();
+
+    return this.categories.filter(option => option.toLowerCase().includes(filterValue));
   }
 
   // tslint:disable-next-line:typedef
@@ -52,7 +83,7 @@ export class AdminPageComponent implements OnInit {
 
   toggleModifying(title, content, image_id, category) {
     this.isModifying = true;
-    this.pageTitle = "Modify a post";
+    this.toggleValue = "Modify";
     this.currentPostTitle = title;
     this.currentPostContent = content;
     this.currentPostId = image_id;
@@ -71,7 +102,7 @@ export class AdminPageComponent implements OnInit {
 
   cancelModifying() {
     this.isModifying = false;
-    this.pageTitle = "Create a post";
+    this.toggleValue = "Create";
     this.currentPostTitle = "";
     this.currentPostContent = "";
     this.currentPostId = "";

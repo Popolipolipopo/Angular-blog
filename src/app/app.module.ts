@@ -28,6 +28,10 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
+import {MatAutocompleteModule} from '@angular/material/autocomplete';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import {MatButtonToggleModule} from '@angular/material/button-toggle';
 
 
 const appRoutes: Routes = [
@@ -51,6 +55,7 @@ const appRoutes: Routes = [
     SignInComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
     FlexLayoutModule,
     MatTabsModule,
     MatCardModule,
@@ -73,6 +78,9 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    MatAutocompleteModule,
+    MatSnackBarModule,
+    MatButtonToggleModule
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],
