@@ -33,6 +33,7 @@ import {MatAutocompleteModule} from '@angular/material/autocomplete';
 import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
+import {MatDividerModule} from '@angular/material/divider';
 
 
 const appRoutes: Routes = [
@@ -83,7 +84,8 @@ const appRoutes: Routes = [
     MatInputModule,
     MatAutocompleteModule,
     MatSnackBarModule,
-    MatButtonToggleModule
+    MatButtonToggleModule,
+    MatDividerModule,
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

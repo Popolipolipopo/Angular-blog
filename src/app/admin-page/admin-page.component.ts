@@ -25,11 +25,14 @@ export class AdminPageComponent implements OnInit {
   toggleValue:string = "Create";
   filteredOptions: Observable<string[]>;
   categories: string[] = [];
+  filter:string = "";
+  limit:number = null;
 
   constructor( public authService: AuthService, private store: AngularFirestore, private storage: AngularFireStorage, private ref:ChangeDetectorRef) {
   }
 
   ngOnInit(): void {
+    this.breakpoint = (window.innerWidth <= 880) ? '0 1 calc(100% - 16px)' : '0 1 calc(33% - 16px)';
     this.items = this.store.collection('blogs').valueChanges();
     this.store.firestore.collection("blogs").get().then((querySnapshot) => {
       querySnapshot.forEach((doc) => {
