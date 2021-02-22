@@ -28,13 +28,23 @@ import { FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {MatFormFieldModule} from '@angular/material/form-field';
 import {MatSelectModule} from '@angular/material/select';
 import {MatInputModule} from '@angular/material/input';
+import { SingleBlogPageComponent } from './single-blog-page/single-blog-page.component';
 
-
+const routes: Routes = [
+  { path: 'home', component: LandingPageComponentComponent },
+  { path: 'blogs', component: BlogPageComponentComponent },
+  { path: 'sign-in', component: SignInComponent },
+  { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
+  { path: 'blogs/:blogName', component: SingleBlogPageComponent },
+  { path: '',   redirectTo: '/home', pathMatch: 'full' },
+  { path: '**', component: PageNotFoundComponent }
+];
 const appRoutes: Routes = [
   { path: 'home', component: LandingPageComponentComponent },
   { path: 'blogs', component: BlogPageComponentComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
+  { path: 'blog', component: SingleBlogPageComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -49,6 +59,7 @@ const appRoutes: Routes = [
     HeaderComponent,
     AdminPageComponent,
     SignInComponent,
+    SingleBlogPageComponent,
   ],
   imports: [
     FlexLayoutModule,
@@ -73,6 +84,7 @@ const appRoutes: Routes = [
     MatFormFieldModule,
     MatSelectModule,
     MatInputModule,
+    RouterModule.forRoot(routes),
   ],
   providers: [AuthService],
   bootstrap: [AppComponent],

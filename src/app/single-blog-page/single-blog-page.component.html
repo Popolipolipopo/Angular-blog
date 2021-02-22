@@ -1,0 +1,18 @@
+<div class="module">
+  <div class="ff-background">
+    <h1>{{this.title}}</h1>
+  </div>
+  <div class="space-div-5"></div>
+  <button mat-button [routerLink]="['/blogs']"> Go Back</button>
+  <div class="center-div">
+    <h3>Description</h3>
+    <div class="space-div-1"></div>
+    <p style="text-align: justify">
+      {{this.content}}
+    </p>
+  </div>
+  <div class="space-div-5"></div>
+  <div class="center-div">
+    <img mat-card-image src="https://firebasestorage.googleapis.com/v0/b/angularblog-e02d1.appspot.com/o/blogs%2F{{this.img}}?alt=media" style="height: 100%; width: 100%; object-fit: cover">
+  </div>
+</div>
