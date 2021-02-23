@@ -36,6 +36,7 @@ import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDividerModule} from '@angular/material/divider';
 import { ContactPageComponent } from './contact-page/contact-page.component';
 import { LegalPageComponent } from './legal-page/legal-page.component';
+import { AboutPageComponent } from './about-page/about-page.component';
 
 
 const appRoutes: Routes = [
@@ -46,6 +47,7 @@ const appRoutes: Routes = [
   { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
   { path: 'contact', component: ContactPageComponent },
   { path: 'legal', component: LegalPageComponent },
+  { path: 'about', component: AboutPageComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -63,6 +65,7 @@ const appRoutes: Routes = [
     SingleBlogPageComponent,
     ContactPageComponent,
     LegalPageComponent,
+    AboutPageComponent,
   ],
   imports: [
     BrowserAnimationsModule,
