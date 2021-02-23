@@ -1,43 +1,50 @@
-<div class="displayTable">
-  <div class="displayTableCell">
+<div class="module">
+  <div class="ff-background">
+    <h1>Admin page</h1>
+    <h2>Want to add new posts ?</h2>
+  </div>
+  <div class="space-div-5"></div>
+  <div class="displayTable">
+    <div class="displayTableCell">
 
-    <div class="authBlock center-div">
-      <h3>Sign In</h3>
-      <form class="example-form">
-        <mat-form-field class="example-full-width">
-          <mat-label>Email</mat-label>
-          <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
-                 placeholder="Ex. pat@example.com" #userEmail>
-<!--
-          <mat-hint>Errors appear instantly!</mat-hint>
--->
-          <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
-            Please enter a valid email address
-          </mat-error>
-          <mat-error *ngIf="emailFormControl.hasError('required')">
-            Email is <strong>required</strong>
-          </mat-error>
-        </mat-form-field>
-        <div class="formGroup">
-          <mat-form-field>
-            <mat-label>Password</mat-label>
-            <input matInput [type]="hide ? 'password' : 'text'" #userPassword>
-            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-            </button>
+      <div class="authBlock center-div">
+        <h3>Sign In</h3>
+        <form class="example-form">
+          <mat-form-field class="example-full-width">
+            <mat-label>Email</mat-label>
+            <input type="email" matInput [formControl]="emailFormControl" [errorStateMatcher]="matcher"
+                   placeholder="Ex. pat@example.com" #userEmail>
+            <!--
+                      <mat-hint>Errors appear instantly!</mat-hint>
+            -->
+            <mat-error *ngIf="emailFormControl.hasError('email') && !emailFormControl.hasError('required')">
+              Please enter a valid email address
+            </mat-error>
+            <mat-error *ngIf="emailFormControl.hasError('required')">
+              Email is <strong>required</strong>
+            </mat-error>
           </mat-form-field>
-          <!--
-                  <input type="password" class="formControl" placeholder="Password" #userPassword required>
-          -->
+          <div class="formGroup">
+            <mat-form-field>
+              <mat-label>Password</mat-label>
+              <input matInput [type]="hide ? 'password' : 'text'" #userPassword>
+              <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+                <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+              </button>
+            </mat-form-field>
+            <!--
+                    <input type="password" class="formControl" placeholder="Password" #userPassword required>
+            -->
+          </div>
+
+        </form>
+
+        <!-- Calling SignIn Api from AuthService -->
+        <div class="formGroup">
+          <button mat-raised-button color="primary" (click)="logIn(userEmail.value, userPassword.value)">Log in</button>
         </div>
-
-      </form>
-
-      <!-- Calling SignIn Api from AuthService -->
-      <div class="formGroup">
-        <button mat-raised-button color="primary" (click)="logIn(userEmail.value, userPassword.value)">Log in</button>
       </div>
-    </div>
 
+    </div>
   </div>
 </div>
