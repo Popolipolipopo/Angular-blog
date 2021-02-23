@@ -82,6 +82,7 @@ export class AdminPageComponent implements OnInit {
   deleteBlog(id) {
     this.store.collection("blogs").doc(id).delete();
     this.storage.ref("blogs/" + id).delete();
+    this.authService.openSnackBar("Post successfully deleted", "OK");
   }
 
   toggleModifying(title, content, image_id, category) {
@@ -101,6 +102,7 @@ export class AdminPageComponent implements OnInit {
     } else {
       this.authService.CreatePost(this.currentPostTitle, this.currentPostContent, this.newPostUrl, this.currentPostCategory);
     }
+    this.cancelModifying();
   }
 
   cancelModifying() {

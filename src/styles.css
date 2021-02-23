@@ -69,3 +69,7 @@ li a:hover:not(.active) {
 .module, .module:active {
   cursor: url('https://findicons.com/files/icons/1012/racing_cars/48/dodge.png'), auto;
 }
+
+mat-icon{
+  font-family: 'Material Icons' !important;
+}
