@@ -24,19 +24,17 @@
             </button>
           </mat-form-field>
         </div>
-
         <div class="formGroup">
           <mat-form-field class="example-form-field">
             <mat-label>Content</mat-label>
-            <input matInput type="text" [(ngModel)]="currentPostContent">
+            <textarea matInput type="text" [(ngModel)]="currentPostContent"></textarea>
             <button mat-button *ngIf="currentPostContent" matSuffix mat-icon-button aria-label="Clear" (click)="currentPostContent=''">
               <mat-icon>close</mat-icon>
             </button>
           </mat-form-field>
         </div>
-
         <div class="formGroup">
-          <mat-form-field class="example-full-width">
+          <mat-form-field class="example-form-field">
             <mat-label>Category</mat-label>
             <input type="text"
                    placeholder="Category"
@@ -52,12 +50,12 @@
             </mat-autocomplete>
           </mat-form-field>
         </div>
-
         <div class="formGroup">
           <img [src]=oldPostUrl height="200"> <br/>
           <img [src]=newPostUrl height="200"> <br/>
           <input type='file' (change)="onSelectFile($event)">
         </div>
+        <div class="space-div-1"></div>
         <div class="formGroup">
           <button mat-raised-button color="primary" (click)="submitForm()">Submit</button>
           <button mat-raised-button (click)="cancelModifying()">Cancel</button>
@@ -65,6 +63,7 @@
       </div>
     </div>
   </div>
+  <div class="space-div-1"></div>
   <mat-divider></mat-divider>
   <div fxLayout="row wrap" fxLayoutAlign="flex-start">
     <ng-container *ngFor="let item of items | async; let i = index">

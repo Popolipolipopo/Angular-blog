@@ -1,6 +1,11 @@
 .displayTable {
   margin: auto;
-  width: 50%;
-  border: 3px solid green;
+  width: 80%;
+  border: 3px solid darkgrey;
   padding: 10px;
+}
+
+.example-form-field {
+  width: 100%;
+  text-align: center;
 }
