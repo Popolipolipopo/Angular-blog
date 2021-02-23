@@ -12,6 +12,7 @@ export class SingleBlogPageComponent implements OnInit {
   img: string;
   title: string;
   content: string;
+  author: string;
 
   constructor(private route: ActivatedRoute) { }
 
@@ -21,7 +22,7 @@ export class SingleBlogPageComponent implements OnInit {
       this.img = params[0];
       this.title = params[1];
       this.content = params[2];
-      console.log(params);
+      this.author = params[3];
     });
   }
 

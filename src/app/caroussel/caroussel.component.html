@@ -11,6 +11,9 @@
           <p style="text-align: justify">
             {{item.content}}
           </p>
+          <p style="text-align: right">
+            by: {{item.author}}
+          </p>
         </mat-card-content>
         <mat-card-actions>
           <button mat-button [routerLink]="['/blog']" [queryParams]="[item.image_name, item.title, item.content]">View more</button>
