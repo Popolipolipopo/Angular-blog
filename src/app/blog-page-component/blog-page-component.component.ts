@@ -21,7 +21,7 @@ export class BlogPageComponentComponent implements OnInit {
   items: Observable<any[]>;
   selectedValue = '';
   categories: Categories[] = [
-    {value: '', viewValue: 'None'},
+    {value: '', viewValue: 'All'},
   ];
 
   constructor(private store: AngularFirestore, private storage: AngularFireStorage, private ref: ChangeDetectorRef) {
