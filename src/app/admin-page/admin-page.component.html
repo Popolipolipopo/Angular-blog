@@ -65,6 +65,7 @@
   </div>
   <div class="space-div-1"></div>
   <mat-divider></mat-divider>
+  <div class="space-div-1"></div>
   <div fxLayout="row wrap" fxLayoutAlign="flex-start">
     <ng-container *ngFor="let item of items | async; let i = index">
       <mat-card *ngIf="(this.limit == null || i < this.limit) && (item.categories == this.filter || this.filter == '')" class="example-card" fxFlex="{{breakpoint}}" (window:resize)="onResize($event)" style="margin: 8px 8px">
