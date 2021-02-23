@@ -47,6 +47,31 @@ li a:hover:not(.active) {
   text-align: center;
 }
 
+/*======================
+    404 page
+=======================*/
+
+
+.page_404{
+  padding:40px 0; background:#fff;
+}
+
+.bg_404{
+  background-image: url(https://media.giphy.com/media/v1HVvijXJpGsE/giphy.gif);
+  background-repeat: no-repeat;
+  background-size: 70%;
+  background-position: center;
+  padding: 20% 0;
+}
+
+.link_404{
+  color: #fff!important;
+  padding: 10px 20px;
+  background: #39ac31;
+  margin: 20px 0;
+  display: inline-block;
+}
+
 .ff-background {
   height: 200px;
   background-image: url("src/assets/IMG_2377.JPG");
