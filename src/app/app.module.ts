@@ -34,6 +34,8 @@ import {MatSnackBarModule} from '@angular/material/snack-bar';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import {MatButtonToggleModule} from '@angular/material/button-toggle';
 import {MatDividerModule} from '@angular/material/divider';
+import { ContactPageComponent } from './contact-page/contact-page.component';
+import { LegalPageComponent } from './legal-page/legal-page.component';
 
 
 const appRoutes: Routes = [
@@ -42,6 +44,8 @@ const appRoutes: Routes = [
   { path: 'blog', component: SingleBlogPageComponent },
   { path: 'sign-in', component: SignInComponent },
   { path: 'admin', component: AdminPageComponent, canActivate: [AuthGuard] },
+  { path: 'contact', component: ContactPageComponent },
+  { path: 'legal', component: LegalPageComponent },
   { path: '',   redirectTo: '/home', pathMatch: 'full' },
   { path: '**', component: PageNotFoundComponent }
 ];
@@ -57,6 +61,8 @@ const appRoutes: Routes = [
     AdminPageComponent,
     SignInComponent,
     SingleBlogPageComponent,
+    ContactPageComponent,
+    LegalPageComponent,
   ],
   imports: [
     BrowserAnimationsModule,

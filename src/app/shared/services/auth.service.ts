@@ -48,35 +48,46 @@ export class AuthService {
 
   CreatePost(title, content, image_url, category) {
     let id:string = this.Makeid(20);
+/*
     this.UploadImage(image_url, id);
-    this.afs.collection("blogs").doc(id).set({
-      "title": title,
-      "content": content,
-      "image_name": id,
-      "categories": category
-    }).then(() => {
-      this.openSnackBar("Post successfully created", "OK");
+*/
+    this.afSt.ref("blogs/" + id).putString(image_url, "data_url").then(() => {
+      const user = JSON.parse(localStorage.getItem('user'));
+      this.afs.collection("blogs").doc(id).set({
+        "title": title,
+        "content": content,
+        "image_name": id,
+        "categories": category,
+        "author": user.email,
+      }).then(() => {
+        this.openSnackBar("Post successfully created", "OK");
+      });
     });
   }
 
   ModifyPost(title, content, new_image_url, old_image_url, id, category) {
     if (!old_image_url) {
-      this.UploadImage(new_image_url, id);
+      this.afSt.ref("blogs/" + id).putString(new_image_url, "data_url").then(() => {
+        this.afs.collection("blogs").doc(id).set({
+          "title": title,
+          "content": content,
+          "image_name": id,
+          "categories": category
+        }).then(() => {
+          this.openSnackBar("Post successfully modified", "OK");
+          location.reload();
+        });
+      });
+    } else {
+      this.afs.collection("blogs").doc(id).set({
+        "title": title,
+        "content": content,
+        "image_name": id,
+        "categories": category
+      }).then(() => {
+        this.openSnackBar("Post successfully modified", "OK");
+      });
     }
-    this.afs.collection("blogs").doc(id).set({
-      "title": title,
-      "content": content,
-      "image_name": id,
-      "categories": category
-    }).then(() => {
-      location.reload();
-      this.openSnackBar("Post successfully modified", "OK");
-    });
-  }
-
-
-  UploadImage(url, id) {
-    this.afSt.ref("blogs/" + id).putString(url, "data_url");
   }
 
   DeleteImage(id) {
